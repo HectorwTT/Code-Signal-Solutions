@@ -1,0 +1,15 @@
+int[] solution(int[] shuffled) {
+  int sum =0;
+  int negativeinfinity= (int)Double.NEGATIVE_INFINITY;
+  for(int i=0;i<shuffled.length;i++){
+      sum +=shuffled[i];
+  }
+  for(int i=0;i<shuffled.length;i++){
+      int totalWithoutCurrent = sum- shuffled[i];
+      if(totalWithoutCurrent == shuffled[i]){
+           shuffled[i]=negativeinfinity;
+           break;
+      }
+  }
+  return Arrays.stream(shuffled).filter(i->i!=negativeinfinity).sorted().toArray();
+}
