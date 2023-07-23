@@ -1,0 +1,10 @@
+int solution(int[] inputArray) {
+  int max= Math.abs(inputArray[1]-inputArray[0]);
+  for(int i=2;i<inputArray.length;i++){
+      int curr= inputArray[i];
+      int prev= inputArray[i-1];
+      int diff = Math.abs(curr-prev) ;
+      if(diff > max) max = diff;
+  }
+  return max;
+}
