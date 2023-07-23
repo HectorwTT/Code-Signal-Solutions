@@ -1,0 +1,8 @@
+int solution(int[] statues) {
+   Arrays.sort(statues);
+   int min = statues[0];
+   int max = statues[statues.length-1];
+   int range= max-min;
+   range++;
+   return range-statues.length;
+}
