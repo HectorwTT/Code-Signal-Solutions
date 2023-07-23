@@ -1,0 +1,15 @@
+boolean solution(String time) {
+   String []times= time.split(":");
+   if(times.length!=2) return false;
+   String hours= times[0];
+   String minutes = times[1];
+   if(hours.length()!=2 || minutes.length()!=2) return false;
+   if(hours.charAt(0)==0 || minutes.charAt(0)==0) return true;
+   try{
+       int hourvalue = Integer.parseInt(hours);
+       int minutevalue= Integer.parseInt(minutes);
+       if(hourvalue <=23 && minutevalue<=59) return true;    
+   }
+   catch(Exception e){}
+   return false;
+}
