@@ -1,0 +1,24 @@
+String[] solution(int[] nums) {
+  String[] border= new String[nums.length];
+  if (nums.length==0) return border;
+  if(nums.length==1) {
+      border[0]=""+nums[0];
+      return border;
+  }
+  int current=0;
+  int start= nums[0];
+  for(int i=1;i<nums.length;i++){
+       if(nums[i]!= nums[current]+(i-current)){
+           if(i-current==1) border[i-1]=""+start;
+           else border[i-1]= start+"->"+nums[i-1];
+           current=i;
+           start= nums[i];
+       }
+       if(current==nums.length-1){
+           if(current==i)  border[nums.length-1]=""+ nums[nums.length-1];
+       }
+  }
+  if(current!=nums.length-1) border[nums.length-1]=start+"->"+nums[nums.length-1];
+   Object [] result=Arrays.stream(border).filter(s->s!=null).toArray();
+   return Arrays.asList(result).toArray(new String[0]);
+}
