@@ -1,0 +1,12 @@
+int solution(int divisor, int bound) {
+   int N = bound;
+   if (N % divisor==0) return N;
+   else {
+       N-=1;
+       while(N>=divisor){
+           if(N%divisor ==0)return N;
+           N--;
+       }
+       return N;
+   }
+}
