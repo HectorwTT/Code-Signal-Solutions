@@ -1,0 +1,12 @@
+String solution(String s) {
+    String newstr =""+s.charAt(0);
+    for(int i=1;i<s.length();i++){
+        char c = s.charAt(i);
+        if((c>=65 && c<=90)){
+            newstr+=" ";
+            newstr +=c;
+        }
+        else newstr +=c;
+    }
+    return newstr.toLowerCase();
+}
