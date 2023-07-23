@@ -1,0 +1,11 @@
+int solution(int n) {
+  int max =n/10;
+  String numString =""+n;
+  int numval=0;
+  for(int i=0;i<numString.length()-1;i++){
+      String numString1=numString.substring(0,i)+ numString.substring(i+1);
+      numval= Integer.parseInt(numString1);
+      if(numval > max) max = numval;
+  }
+  return max;
+}
