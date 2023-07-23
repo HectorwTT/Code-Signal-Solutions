@@ -1,0 +1,10 @@
+int solution(int a, int b, int n) {
+ int total=0;
+ while(n!=0){
+     total +=(a*b);
+     a++;
+     b++;
+     n--;
+ }
+ return total;
+}
