@@ -1,0 +1,6 @@
+int solution(int a) {
+  String binary= Integer.toBinaryString(a);
+  StringBuffer sb= new StringBuffer(binary);
+  sb.reverse();
+  return Integer.parseInt(sb.toString(),2);
+}
