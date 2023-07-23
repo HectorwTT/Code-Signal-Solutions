@@ -1,0 +1,4 @@
+int solution(int n, int m) {
+  int candyPerChild = m/n;
+  return n * candyPerChild; 
+}
