@@ -1,0 +1,13 @@
+int[] solution(double threshold, int[][] ratings) {
+  List<Integer> listofpros= new ArrayList<>();
+  for(int i=0;i<ratings.length;i++){
+      double average=0;
+      int total=0;
+      for(int j=0;j<ratings[i].length;j++){
+          total+= ratings[i][j];
+      }
+      average= (double)total/(double)ratings[i].length;
+      if(average<threshold)listofpros.add(i);
+  }
+     return listofpros.stream().mapToInt(Integer::intValue).toArray();
+}
