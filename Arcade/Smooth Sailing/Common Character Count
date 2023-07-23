@@ -1,0 +1,22 @@
+int solution(String s1, String s2) {
+  int[] s1chars = new int[26];
+  int[] s2chars = new int[26];
+  for(int i=0;i<s1.length();i++){
+      char c1 = s1.charAt(i);
+      int c1val = c1-97;
+      s1chars[c1val]++;
+  }
+  for(int j=0;j<s2.length();j++){
+      char c2 = s2.charAt(j);
+      int c2val = c2-97;
+      s2chars[c2val]++;
+  }
+  int numOfCommonChars =0;
+  for(int k=0;k<26;k++){
+      if( s1chars[k]>0 && s2chars[k] >0){
+          int lessernum = Math.min(s1chars[k],s2chars[k]);
+          numOfCommonChars +=lessernum;
+      }
+  }
+  return numOfCommonChars ;
+}
