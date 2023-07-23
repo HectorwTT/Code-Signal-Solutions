@@ -1,0 +1,16 @@
+String solution(int l, double[] fares) {
+  double max = 0.0;
+  int index=0;
+  for(int i=0;i<fares.length;i++){
+      double cost = fares[i]*l;
+      if(cost>max && cost <=20.0 ) {
+       max=cost;
+       index=i;   
+      }
+  }
+  if(index==0)return "UberX";
+  else if(index==1)return "UberXL";
+  else if(index==2) return "UberPlus";
+  else if(index==3) return "UberBlack";
+  else return "UberSUV";
+}
