@@ -1,0 +1,23 @@
+int solution(int product) {
+ if(product==0) return 10;
+ if(product<=9) return product;
+ String digits="";
+ int product1=product;
+    while(product1!=1){
+     int number=9;
+     while(number>1){
+         if(product1%number==0){
+          digits=number+digits;
+          product1/=number;
+          if(product1 <10) {
+             digits = product1+digits;
+             return Integer.parseInt(String.valueOf(digits));
+          }
+          break;   
+         }
+         number--;
+     }
+     if(number==1) break;
+    }
+   return -1;
+}
