@@ -1,0 +1,15 @@
+boolean solution(String pattern, String test) {
+  char first= pattern.charAt(0);
+  char last=pattern.charAt(pattern.length()-1);
+  String prefix="";
+  String suffix="";
+  boolean hasPrefix=false;
+  boolean hasSuffix=false;
+  if(first=='^') prefix =pattern.substring(1);
+  if(last=='$') suffix=pattern.substring(0,pattern.length()-1);
+  if(!prefix.equals("")) hasPrefix = test.substring(0,prefix.length()).equals(prefix);
+  if(!suffix.equals("")) hasSuffix= test.
+                                    substring(test.length()-suffix.length()).equals  (suffix);
+  return hasPrefix ||hasSuffix|| test.contains(pattern);
+  
+}
