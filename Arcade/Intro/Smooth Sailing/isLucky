@@ -1,0 +1,18 @@
+boolean solution(int n) {
+  String nval =""+n;
+  int left = 0;
+  int right = nval.length()-1;
+  int firsthalfsum=0;
+  int secondhalfsum=0;
+  while(left < right){
+      char leftch = nval.charAt(left);
+      char rightch = nval.charAt(right);
+      int leftchval = leftch-48;
+      int rightchval = rightch-48;
+      firsthalfsum+=leftchval;
+      secondhalfsum +=rightchval;
+      left++;
+      right--;
+  }
+  return firsthalfsum == secondhalfsum;
+}
