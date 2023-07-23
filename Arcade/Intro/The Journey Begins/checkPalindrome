@@ -1,0 +1,12 @@
+boolean solution(String inputString) {
+  int left  =0;
+  int right = inputString.length()-1;
+  while(left < right){
+      char leftch = inputString.charAt(left);
+      char rightch = inputString.charAt(right);
+      if (leftch!= rightch) return false;
+      left++;
+      right--;
+  }
+  return true;
+}
