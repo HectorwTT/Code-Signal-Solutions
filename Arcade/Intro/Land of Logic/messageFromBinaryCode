@@ -1,0 +1,26 @@
+String solution(String code) {
+  String plaintext="";
+  int length= code.length()/8;
+  int leftover= code.length()%8;
+  if(leftover!=0) return"none";
+  String[] bits=new String[length];
+  int start=0;
+  int end =8;
+  int index=0;
+  while(index<bits.length){
+      bits[index++]=code.substring(start,end);
+      start+=8;
+      end+=8; 
+  }
+  for(int i=0;i<bits.length;i++){
+      String bits1 = bits[i];
+      int asciivalue=0;
+      for(int j=0;j<bits1.length();j++){
+          int val= bits1.charAt(j)-48;
+          asciivalue+=(int) val * Math.pow(2,8-j-1);
+      }
+      char c = (char)asciivalue;
+      plaintext+=c;
+  }
+  return plaintext;
+}
