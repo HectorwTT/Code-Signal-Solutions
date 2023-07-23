@@ -1,0 +1,12 @@
+double solution(int[][] trainingData) {
+    double total =0.0;
+    int numofcorrect =0;
+    for(int i=0;i<trainingData.length;i++){
+        if (trainingData[i][1]==1){
+            numofcorrect++;
+             total += trainingData[i][0];
+        }
+    }
+    if (total==0.0) return 0.0;
+    else return total/numofcorrect;
+}
