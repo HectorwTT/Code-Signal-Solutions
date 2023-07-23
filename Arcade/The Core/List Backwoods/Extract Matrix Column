@@ -1,0 +1,7 @@
+int[] solution(int[][] matrix, int column) {
+  int [] result = new int [matrix.length];
+  for(int i=0;i<result.length;i++){
+      result[i]= matrix[i][column];
+  }
+  return result;
+}
