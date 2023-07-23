@@ -1,0 +1,19 @@
+String solution(String text) {
+  int maxlength=0;
+  String longestString="";
+  String word="";
+  for(int i=0;i<text.length();i++){
+      char c = text.charAt(i);
+      if((c>=97 && c<=122) || (c>=65 && c<=90)) word+=c;
+      else{
+          int length=word.length();
+          if(maxlength<length){
+              maxlength= length;
+              longestString=word;
+          }
+          word="";
+      }
+  }
+  if(word.length()>longestString.length()) return word;
+  else return longestString; 
+}
