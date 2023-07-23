@@ -1,0 +1,9 @@
+int[] solution(int[] deadlines, int day) {
+ int [] tasks = new int[3];
+ for(int i=0;i<deadlines.length;i++){
+     if (deadlines[i]<= day) tasks[0]++;
+     else if(deadlines[i]>=day+1 && deadlines[i]<=day+7) tasks[1]++;
+     else tasks[2]++;
+ }
+ return tasks;
+}
