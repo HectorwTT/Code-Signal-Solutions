@@ -1,0 +1,15 @@
+boolean solution(String inputString) {
+   inputString=inputString.toUpperCase();
+   if(inputString.length()<=1)return false;
+   String [] addresses= inputString.split("-",6);
+   if(addresses.length!=6) return false;
+   for(int i=0;i<addresses.length;i++){
+       String address= addresses[i];
+       if(address.length()!=2)return false;
+       char first= address.charAt(0);
+       char last= address.charAt(1);
+       if(!(first>=48 && first<=57)&& !(first>=65&&first<=70)) return false;
+        if(!(last>=48 && last<=57)&& !(last>=65&& last<=70)) return false;
+   }
+   return true;
+}
