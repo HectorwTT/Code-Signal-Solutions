@@ -1,0 +1,4 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select * from results order by wins;
+END
