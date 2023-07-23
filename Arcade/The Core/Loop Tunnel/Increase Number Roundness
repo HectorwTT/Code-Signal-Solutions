@@ -1,0 +1,11 @@
+boolean solution(int n) {
+  int mod=0;
+  while(mod==0 && n>0){
+      mod = n%10;
+      n/=10;
+  }
+  if (n==0) return false;
+  String nString=""+n;
+  int zeroIndex = nString.indexOf("0");
+  return zeroIndex !=-1;
+}
