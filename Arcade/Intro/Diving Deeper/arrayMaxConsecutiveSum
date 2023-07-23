@@ -1,0 +1,13 @@
+int solution(int[] inputArray, int k) {
+    int max= inputArray[0];
+    for(int i=0;i<inputArray.length;i++){
+        int curr=inputArray[i];
+        int sum = curr;
+        for(int j=i+1;j<i+k && j<inputArray.length;j++){
+            int next = inputArray[j];
+            sum +=next;
+        }
+        if(max < sum) max = sum;
+    }
+    return max;
+}
