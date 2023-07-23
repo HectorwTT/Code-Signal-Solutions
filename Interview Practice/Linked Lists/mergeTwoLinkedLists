@@ -1,0 +1,40 @@
+ListNode<Integer> solution(ListNode<Integer> l1, ListNode<Integer> l2) {
+  ListNode<Integer> l1current=l1;
+  ListNode<Integer> l2current=l2;
+  if(l1current==null) return l2;
+  if(l2current==null) return l1;
+  ListNode<Integer>l3=null;
+  ListNode<Integer> l3current = null;
+  while(l1current!=null && l2current!=null){
+      int l1currentvalue= l1current.value;
+      int l2currentvalue= l2current.value;
+      ListNode<Integer> tmp=null;
+      if(l1currentvalue<=l2currentvalue) {
+          tmp= new ListNode(l1currentvalue);
+          l1current=l1current.next;
+          if(l3==null){
+              l3=tmp;
+              l3.next=null;
+              l3current=l3;
+          } else{
+             l3current.next=tmp;
+             l3current=l3current.next;
+          }
+         
+     }else{
+          tmp= new ListNode(l2currentvalue);
+          l2current=l2current.next;
+          if(l3==null){
+              l3=tmp;
+              l3.next=null;
+              l3current=l3;
+          } else{
+             l3current.next=tmp;
+             l3current=l3current.next;
+          }
+      } 
+  }
+  if(l1current==null)l3current.next=l2current;
+  if(l2current==null)l3current.next=l1current;
+  return l3;
+}
