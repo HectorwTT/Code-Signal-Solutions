@@ -1,0 +1,4 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select name from projectlog group by name order by name;
+END
