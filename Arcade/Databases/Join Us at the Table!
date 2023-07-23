@@ -1,6 +1,0 @@
-CREATE PROCEDURE solution()
-BEGIN
-	select departments.dep_name,employees.emp_name 
-	from departments inner join employees 
-	where 1=1 order by dep_name,emp_name;
-END
