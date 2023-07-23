@@ -1,0 +1,18 @@
+String solution(String cipher) {
+  int index =0;
+  int nextindex=0;
+  String plaintext="";
+  while(nextindex<cipher.length()){
+    char c=cipher.charAt(index);
+    if(c=='9')nextindex+=2;
+    else nextindex+=3;
+    String ascii="";
+    if(nextindex==cipher.length()) ascii= cipher.substring(index);
+    else ascii=cipher.substring(index,nextindex);
+    int asciivalue= Integer.parseInt(ascii);
+    char ch= (char) asciivalue;
+    plaintext+=ch;
+    index=nextindex;
+  }
+  return plaintext;
+}
