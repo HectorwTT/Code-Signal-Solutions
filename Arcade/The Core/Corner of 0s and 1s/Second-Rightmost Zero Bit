@@ -1,0 +1,3 @@
+int solution(int n) {
+  return (int)Math.pow(2, Integer.toBinaryString(n).length() - Integer.toBinaryString(n).lastIndexOf('0',Integer.toBinaryString(n).lastIndexOf('0')-1) - 1);
+}
