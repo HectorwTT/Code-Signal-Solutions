@@ -1,0 +1,11 @@
+int solution(int upSpeed, int downSpeed, int desiredHeight) {
+ int dayHeight =0+upSpeed;
+ int nightHeight=dayHeight-downSpeed;
+ int numOfDays=1;
+ while(dayHeight<desiredHeight){
+     dayHeight= nightHeight+upSpeed;
+     nightHeight=dayHeight-downSpeed;
+     numOfDays++;
+ }
+ return numOfDays;
+}
