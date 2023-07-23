@@ -1,0 +1,12 @@
+String solution(String inputString) {
+     int index =0;
+     inputString +=" ";
+     for(int i=0;i<inputString.length();i++){
+         char ch = inputString.charAt(i);
+         if(!(ch>=48 && ch <=57)) {
+             index =i;
+             break;
+         }  
+     }
+    return inputString.substring(0,index);
+}
