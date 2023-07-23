@@ -1,0 +1,6 @@
+CREATE PROCEDURE solution()
+    SELECT email
+    FROM users
+    WHERE role not IN ("admin", "premium")
+
+    ORDER BY email;
