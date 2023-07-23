@@ -1,0 +1,9 @@
+int[] solution(int[] inputArray, int l, int r) {
+   List <Integer> inputs = new ArrayList<>();
+    for(int i=0;i<inputArray.length;i++){
+        if(i<l || i>r) inputs.add(inputArray[i]);
+    }
+    return inputs.stream()
+                 .mapToInt(Integer::intValue)
+                 .toArray();
+}
