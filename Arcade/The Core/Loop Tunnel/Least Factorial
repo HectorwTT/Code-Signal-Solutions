@@ -1,0 +1,10 @@
+function solution(n) {
+  var x=1;
+  var factorial=1;
+  while(factorial<n){
+      x++;
+      factorial*=x;
+  }
+  return factorial;
+}
+//written in javascript
