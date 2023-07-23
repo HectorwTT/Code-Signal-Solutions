@@ -1,0 +1,3 @@
+int solution(String s) {
+   return (int) s.chars().distinct().count();
+}
