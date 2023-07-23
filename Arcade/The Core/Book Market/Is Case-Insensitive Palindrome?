@@ -1,3 +1,7 @@
-String solution(String inputString) {
-    return "("+inputString+")";
+boolean solution(String inputString) {
+    inputString = inputString.toLowerCase();
+    StringBuffer sb= new StringBuffer(inputString);
+    sb.reverse();
+    String inputString1= sb.toString();
+    return (inputString.equals(inputString1));
 }
