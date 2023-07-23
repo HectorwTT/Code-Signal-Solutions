@@ -1,0 +1,10 @@
+int[] solution(int[] a) {
+   int team1weight=0;
+   int team2weight=0;
+   for(int i=0;i<a.length;i++){
+       if(i%2==0) team1weight+= a[i];
+       else team2weight+=a[i];
+   }
+   int []b = {team1weight,team2weight};
+   return b;
+}
