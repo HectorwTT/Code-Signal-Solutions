@@ -1,0 +1,13 @@
+int solution(int n) {
+  if(n<10) return 0;
+  else{
+      int sumOfDigits=0;
+      int num =n;
+      while(num !=0){
+          int digit = num %10;
+          sumOfDigits += digit;
+          num /=10;
+      }
+      return 1 +solution(sumOfDigits);   
+  }
+}
