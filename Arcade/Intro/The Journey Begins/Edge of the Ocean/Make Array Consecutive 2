@@ -1,0 +1,20 @@
+int solution(int[] statues){
+  Arrays.sort(statues);
+  int numExistingStatues = statues.length;
+  List<Integer> newStatuesList = new ArrayList<>();
+  int first = statues[0];
+  newStatuesList.add(first);
+  
+  for(int i=1;i<statues.length;i++){
+
+      int currval = statues[i];
+      int prevval = statues[i-1];
+      while(currval-prevval!=1){
+          newStatuesList.add(prevval);
+          prevval++;
+      }
+      newStatuesList.add(currval);
+  }
+  return newStatuesList.size()-numExistingStatues;
+
+}
