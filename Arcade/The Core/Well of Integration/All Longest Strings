@@ -1,0 +1,14 @@
+String[] solution(String[] inputArray) {
+    int maxlength=0;
+    List<String> list= new ArrayList<>();
+    for(int i=0;i<inputArray.length;i++){
+        String str= inputArray[i];
+        int currentlength= str.length();
+        if(maxlength<currentlength) maxlength=currentlength;
+    }
+    for(int i=0;i<inputArray.length;i++){
+        String str= inputArray[i];
+        if(str.length()==maxlength) list.add(str);
+    }
+    return list.toArray(new String[0]);
+}
