@@ -1,0 +1,13 @@
+boolean solution(String inputString) {
+  int [] letters = new int[26];
+  inputString= inputString.toLowerCase();
+  for(int i=0;i<inputString.length();i++){
+      char c = inputString.charAt(i);
+      int cval = c-97;
+      letters[cval]++;
+  }
+  for(int j=1;j<letters.length;j++){
+      if(letters[j]> letters[j-1] && letters[j]!=0 ) return false;
+  }
+  return true;
+}
