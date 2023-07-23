@@ -1,0 +1,23 @@
+boolean solution(String inputString) {
+ if (inputString.length()<=1) return true;
+ if(inputString.length()==2){
+     if(inputString.charAt(0)==inputString.charAt(1)) return true;
+     else return false;
+ }
+ inputString = inputString.toLowerCase();
+ HashMap <Character,Integer> charcounts = new HashMap<Character,Integer>();
+ for(int i=0;i<inputString.length();i++){
+     char c = inputString.charAt(i);
+     if(charcounts.containsKey(c) && (c>=97 && c <=122)){
+         int val=charcounts.get(c);
+         val++;
+         charcounts.replace(c,val);
+     }
+     else charcounts.put(c,1);
+ }
+ long evenletters = charcounts.values().stream().filter(i->i%2==0).count();
+ long oddletters = charcounts.values().stream().filter(i->i%2==1).count();
+ long size = charcounts.size();
+ return evenletters == size || (evenletters == size-1 && oddletters==1) 
+ || evenletters == oddletters; 
+}
