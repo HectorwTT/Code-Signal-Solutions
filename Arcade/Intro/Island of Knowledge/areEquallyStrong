@@ -1,0 +1,7 @@
+boolean solution(int yourLeft, int yourRight, int friendsLeft, int friendsRight) {
+   int yourStrongerarm = Math.max(yourLeft,yourRight);
+   int yourWeakerArm=Math.min(yourLeft,yourRight);
+   int friendsStrongerarm = Math.max(friendsLeft,friendsRight);
+   int friendsWeakerArm = Math.min(friendsLeft,friendsRight);
+   return yourStrongerarm==friendsStrongerarm && yourWeakerArm == friendsWeakerArm;
+}
