@@ -1,0 +1,4 @@
+int solution(int n) {
+   String num = "9".repeat(n);
+   return Integer.parseInt(num);
+}
