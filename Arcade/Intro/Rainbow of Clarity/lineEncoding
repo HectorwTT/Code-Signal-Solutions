@@ -1,0 +1,18 @@
+String solution(String s) {
+   int count =1;
+   String encoded="";
+   char previous=s.charAt(0);
+   for(int i=1;i<=s.length();i++){
+       char current;
+       if(i==s.length()) current= s.charAt(i-1);
+       else current=s.charAt(i);
+       if(current!= previous ||i==s.length()){
+           if(count==1) encoded+=previous;
+           else encoded+=count+""+previous;
+           count =1;
+       }
+       else count++;
+       previous = current;
+   }
+   return encoded;
+}
