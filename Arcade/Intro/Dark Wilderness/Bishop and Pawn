@@ -1,0 +1,9 @@
+boolean solution(String bishop, String pawn) {
+  char bishoprow= bishop.charAt(1);
+  char pawnrow = pawn.charAt(1);
+  char bishopcolumn = bishop.charAt(0);
+  char pawncolumn = pawn.charAt(0);
+  return ((Math.abs(bishoprow-pawnrow)== Math.abs(bishopcolumn-pawncolumn) ) &&
+          (bishopcolumn !=pawncolumn)
+           && (bishoprow != pawnrow));
+}
