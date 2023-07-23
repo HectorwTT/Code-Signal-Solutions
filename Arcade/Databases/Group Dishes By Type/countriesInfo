@@ -1,0 +1,4 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select count(*) as number,avg(population),sum(population) from countries;
+END
