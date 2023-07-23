@@ -1,0 +1,3 @@
+boolean solution(char symbol) {
+  return symbol >=48 && symbol <=57;
+}
