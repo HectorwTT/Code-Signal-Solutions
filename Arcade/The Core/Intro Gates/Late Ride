@@ -1,0 +1,12 @@
+int solution(int n) {
+  int hours = n/60;
+  int minutes = n%60;
+  int totalval=0;
+  String total= ""+hours+minutes;
+  for(int i=0;i<total.length();i++){
+      char c= total.charAt(i);
+      int cval = c-48;
+      totalval+=cval;
+  }
+  return totalval;
+}
