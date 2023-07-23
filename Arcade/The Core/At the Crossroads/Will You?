@@ -1,0 +1,3 @@
+boolean solution(boolean young, boolean beautiful, boolean loved) {
+   return (loved == !young || ! beautiful) && (!loved == (young && beautiful));
+}
