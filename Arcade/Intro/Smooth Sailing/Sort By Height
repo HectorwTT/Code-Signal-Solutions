@@ -1,0 +1,9 @@
+int[] solution(int[] a) {
+ int [] b = a.clone();
+ int [] sortedheights=Arrays.stream(a).filter(i->i!=-1).sorted().toArray(); 
+ int current=0;
+ for(int i=0;i<b.length;i++){
+     if(b[i]!=-1)b[i]=sortedheights[current++];
+ } 
+ return b;
+}
