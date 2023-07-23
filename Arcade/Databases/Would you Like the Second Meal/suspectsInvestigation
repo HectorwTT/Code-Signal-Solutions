@@ -1,0 +1,4 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select id,name,surname from suspect where height <=170 and name like 'b%' and surname like 'Gre%n' and length(surname)=5;
+END
