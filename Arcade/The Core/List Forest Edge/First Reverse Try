@@ -1,0 +1,8 @@
+int[] solution(int[] arr) {
+  if(arr.length==0 || arr.length==1) return arr;
+  int tmp = arr[0];
+  int tmp1 = arr[arr.length-1];
+  arr[0]= tmp1;
+  arr[arr.length-1]= tmp;
+  return arr;
+}
