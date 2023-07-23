@@ -1,0 +1,16 @@
+int solution(int n, int l, int r) {
+   int a=l;
+   int numOfWays=0;
+   Map<Integer,Integer> numbers = new HashMap<>();
+   while(a<=r ){
+       int b= n-a;
+       if(b<=r && b >=l){
+          if(!numbers.containsKey(a)){
+             numbers.put(b,a);
+             numOfWays++;
+          }
+       } 
+       a++;
+   }
+   return numOfWays;
+}
