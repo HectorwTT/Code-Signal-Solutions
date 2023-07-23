@@ -1,0 +1,9 @@
+boolean solution(int n) {
+   int num = n;
+   while (num !=0){
+       int digit = num%10;
+       if(digit %2==1) return false;
+       num /=10;
+   }
+   return true;
+}
