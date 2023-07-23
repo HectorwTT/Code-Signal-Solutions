@@ -1,0 +1,3 @@
+boolean solution(int[] a) {
+  return Arrays.stream(a).distinct().toArray().length!=a.length;
+}
