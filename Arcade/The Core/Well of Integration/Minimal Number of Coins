@@ -1,7 +1,7 @@
 int solution(int[] coins, int price) {
   int [][] denominations= new int[coins.length+1][price+1];
   for(int i=0;i<price+1;i++)denominations[0][i]=0;
-  for(int j=0;j<coins.length+1;j++)denominations[0][j]=0;
+  for(int j=0;j<coins.length+1;j++)denominations[j][0]=0;
   for(int i=1;i<coins.length+1;i++){
       for(int j=1;j<price+1;j++){
           if(i==1){
