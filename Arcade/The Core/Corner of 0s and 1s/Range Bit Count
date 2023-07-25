@@ -1,0 +1,36 @@
+int solution(int a, int b) {
+        int[]numberOfOnes=new int[b+1];
+        if(b==0)return 0;
+        numberOfOnes[0]=0;
+        numberOfOnes[1]=1;
+        int numOfOneBits=0;
+        if(b==a)return Integer.bitCount(a);
+        if(b==1) return 1;
+        numberOfOnes[2]=1;
+        int lastPowerOfTwo=2;
+        if(a==1) numOfOneBits=2;
+        if(a==2) numOfOneBits=1;
+        for(int i=3;i<numberOfOnes.length;i++){
+            if(isPowerOfTwo(i)){
+                numberOfOnes[i]=1;
+                lastPowerOfTwo=i;
+            }
+            else{
+                numberOfOnes[i]=numberOfOnes[lastPowerOfTwo]+
+                                 numberOfOnes[i-lastPowerOfTwo];
+            }
+            if(i>=a){
+                numOfOneBits+= numberOfOnes[i];
+            }
+        }
+        return numOfOneBits;
+    }
+    public boolean isPowerOfTwo(int n){
+        if(n<=2) return true;
+        if(n%2==1) return false;
+        if(n>2){
+            if((n/2)==2 && (n%2==0)) return true; 
+            else return isPowerOfTwo(n/2);
+        }
+        return false;
+    }
