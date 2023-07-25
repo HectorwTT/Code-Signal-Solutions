@@ -1,0 +1,15 @@
+int[] productOfDigits=new int[a.length];
+ for(int i=0;i<productOfDigits.length;i++){
+     if(a[i]<10) productOfDigits[i]= a[i];
+     else{
+         int product= findProduct(a[i]);
+         productOfDigits[i]= product;
+     }
+ }
+  return (int)Arrays.stream(productOfDigits).distinct().count();
+}
+
+int findProduct(int n){
+    if(n<10) return n;
+    else return n%10 *findProduct(n/10);
+}
