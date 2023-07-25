@@ -1,0 +1,12 @@
+int[] solution(int[] arr) {
+   if(arr.length%2==1) return arr;
+   else {
+       int num1=arr[(arr.length/2)-1];
+       int num2=arr[arr.length/2];
+       int num3= num1+num2;
+       arr[(arr.length/2)-1]= num3;
+       int negativeinfinity=(int)Double.NEGATIVE_INFINITY;
+       arr[arr.length/2]= negativeinfinity;
+       return Arrays.stream(arr).filter(i->i!=negativeinfinity).toArray();
+   }
+}
