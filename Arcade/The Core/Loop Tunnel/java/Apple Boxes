@@ -1,0 +1,11 @@
+int solution(int k) {
+  int numberOfRed=0;
+  int numberOfYellow=0;
+  int box=1;
+  while(box<=k){
+      if(box%2==1) numberOfYellow+= box*box;
+      else numberOfRed +=box*box;
+      box++;
+  }
+  return numberOfRed-numberOfYellow;
+}
