@@ -1,0 +1,15 @@
+boolean solution(int n) {
+   if(n==1) return true;
+   int number=2;
+   while(number<n){
+       int power=0;
+       int number1= 0;
+       while(number1<n){
+           number1= (int)Math.pow(number,power);
+           if(number1==n) return true;
+           else power++;
+       }
+       number++;
+   }
+   return false;
+}
