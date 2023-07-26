@@ -1,0 +1,8 @@
+function solution(deposit, rate, threshold) {
+  var year = 0;
+    while(deposit < threshold){
+        year++;
+        deposit += deposit*rate/100;
+    }
+    return year;
+}
