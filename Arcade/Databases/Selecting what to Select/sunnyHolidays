@@ -1,0 +1,8 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select holiday_date as ski_date
+	 from holidays
+	 where holiday_date 
+	  in(select sunny_date from weather)
+	 group by holiday_date;
+END
