@@ -1,0 +1,13 @@
+int[] solution(int legs) {
+ int maxPeople = legs/2;
+ List <Integer> possibleNumbers = new ArrayList<>();
+ possibleNumbers.add(maxPeople);
+ int people=maxPeople-2;
+ int numberOfCats=1;
+ while(people>=0){
+     if((people*2)+(numberOfCats*4)==legs)possibleNumbers.add(people);
+     numberOfCats++;
+     people-=2;
+ }
+ return possibleNumbers.stream().mapToInt(Integer::intValue).sorted().toArray();
+}
