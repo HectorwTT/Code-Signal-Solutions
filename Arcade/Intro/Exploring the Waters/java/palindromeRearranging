@@ -18,6 +18,5 @@ boolean solution(String inputString) {
  long evenletters = charcounts.values().stream().filter(i->i%2==0).count();
  long oddletters = charcounts.values().stream().filter(i->i%2==1).count();
  long size = charcounts.size();
- return evenletters == size || (evenletters == size-1 && oddletters==1) 
- || evenletters == oddletters; 
+ return evenletters == size || (evenletters == size-1 && oddletters==1); 
 }
