@@ -1,0 +1,25 @@
+boolean solution(int[] a, int[] b) {
+ if(Arrays.equals(a,b)) return true;
+ int firstIndex=-1;
+ for(int i=0;i<a.length;i++){
+     if(a[i]!=b[i]){
+         if(firstIndex==-1)firstIndex=i;
+         else{
+             int tmpa1= a[firstIndex];
+             int tmpa2= a[i];
+             int tmpb1=b[firstIndex];
+             int tmpb2=b[i];
+             a[i]=tmpa1;
+             a[firstIndex]=tmpa2;
+             if(Arrays.equals(a,b)) return true;
+             a[i]=tmpa2;
+             a[firstIndex]=tmpa1;
+             b[i]= tmpb1;
+             b[firstIndex]=tmpb2;
+             if(Arrays.equals(a,b)) return true;
+             else break;
+         }
+     }
+ }
+ return false;
+}
