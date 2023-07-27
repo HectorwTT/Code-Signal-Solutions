@@ -13,8 +13,7 @@ boolean solution(char[][] grid) {
         numcount=Arrays.stream(values).filter(ch->ch!='.')
                        .filter(ch->ch>=48&&ch<=57).count();
         distinctcount = Arrays.stream(values).filter(ch->ch!='.').distinct().count();
-        if(distinctcount!=numcount)return false;
-        
+        if(distinctcount!=numcount)return false;  
       }    
     }
     row=0;
