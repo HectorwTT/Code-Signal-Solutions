@@ -11,7 +11,6 @@ boolean solution(int[][] grid) {
         column=0;
         distinctcount = Arrays.stream(values).distinct().count();
         if(distinctcount!=9)return false;
-        
       }    
     }
     row=0;
