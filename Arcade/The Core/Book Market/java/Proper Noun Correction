@@ -1,0 +1,7 @@
+String solution(String noun) {
+ char first = noun.charAt(0);
+ String restNoun= noun.substring(1);
+ if(first>=65 && first<=90 && restNoun.toLowerCase().equals(restNoun)) return noun;
+ String firstLetter =""+first;
+ return firstLetter.toUpperCase() + restNoun.toLowerCase();
+}
