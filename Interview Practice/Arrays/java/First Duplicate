@@ -1,6 +1,5 @@
 int solution(int[] a) {
   int minIndex=a.length;
-  
   for(int i=0;i<a.length;i++){
       int firstoccurrence =a[i];
       int minIndex1=i;
@@ -9,8 +8,7 @@ int solution(int[] a) {
               minIndex1=j;
               break;
           }
-          
-      }
+       }
       if(minIndex1<minIndex && minIndex1!=i)minIndex=minIndex1;
   }
   if(minIndex==a.length)return -1;
