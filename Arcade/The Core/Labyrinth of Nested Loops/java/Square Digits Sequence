@@ -1,0 +1,19 @@
+int solution(int a0) {
+  List <Integer> previousNumbers= new ArrayList<>();
+  previousNumbers.add(a0);
+  boolean notInList= true;
+  while(notInList){
+      String num= ""+a0;
+      int sum=0;
+      for(int i=0;i<num.length();i++){
+          char ch= num.charAt(i);
+          int val = ch-48;
+          int squareval= val *val;
+          sum +=squareval;
+      }
+      if(previousNumbers.contains(sum))notInList=false;
+      previousNumbers.add(sum);
+      a0=sum;
+  }
+  return previousNumbers.size();
+}
