@@ -1,9 +1,18 @@
 int solution(int[] a) {
-  List <Integer> numbers= new ArrayList<>();
+  int minIndex=a.length;
   
   for(int i=0;i<a.length;i++){
-      if(numbers.contains(a[i]))return a[i];
-      else numbers.add(a[i]);
+      int firstoccurrence =a[i];
+      int minIndex1=i;
+      for(int j=i+1;j<a.length;j++){
+          if(firstoccurrence==a[j]){
+              minIndex1=j;
+              break;
+          }
+          
+      }
+      if(minIndex1<minIndex && minIndex1!=i)minIndex=minIndex1;
   }
-   return -1;
+  if(minIndex==a.length)return -1;
+  else return a[minIndex];
 }
