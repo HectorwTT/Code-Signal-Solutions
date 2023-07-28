@@ -1,0 +1,13 @@
+String solution(String startTag) {
+   int index= startTag.indexOf(" ");
+   int openingindex= startTag.indexOf("<");
+   String newTag=startTag;
+   if(index!=-1){
+    newTag= startTag.substring(0,index+1);
+    newTag= newTag.trim(); 
+    newTag+=">";
+   }
+   if(openingindex==-1) newTag = "<"+newTag;
+   newTag= newTag.substring(openingindex+1);
+   return "</"+newTag;
+}
