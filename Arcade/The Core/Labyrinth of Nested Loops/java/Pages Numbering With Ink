@@ -1,0 +1,11 @@
+int solution(int current, int numberOfDigits) {
+ if(numberOfDigits ==1 || numberOfDigits/((""+current).length())==1) return current;
+  while(numberOfDigits!=0){
+      String currentstr=""+ current;
+      int numOfNeededDigits=currentstr.length();
+      if(numOfNeededDigits>numberOfDigits) break;
+      current++;
+      numberOfDigits-=numOfNeededDigits;
+  }
+  return current-1;
+}
