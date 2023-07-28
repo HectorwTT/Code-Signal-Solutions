@@ -1,0 +1,6 @@
+boolean solution(String inputString) {
+  int midpoint = inputString.length()/2;
+  String firsthalf= inputString.substring(0,midpoint);
+  String lasthalf=inputString.substring(midpoint);
+  return firsthalf.equals(lasthalf);
+}
