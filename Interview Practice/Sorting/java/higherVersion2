@@ -1,0 +1,16 @@
+int solution(String ver1, String ver2) {
+  String [] version1 = ver1.split("\\.");
+  String [] version2 = ver2.split("\\.");
+  for(int i=0;i<version1.length;i++){
+      String version1i= version1[i];
+      String version2i = version2[i];
+      try{
+          int number1= Integer.parseInt(version1i);
+          int number2 = Integer.parseInt(version2i);
+          if(number1>number2)return 1;
+          if(number2>number1)return -1;
+         }
+      catch(Exception e){ }
+  }
+  return 0;
+}
