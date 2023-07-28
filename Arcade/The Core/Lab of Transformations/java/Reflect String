@@ -1,0 +1,13 @@
+String solution(String inputString) {
+    String outputString="";
+    for(int i=0;i<inputString.length();i++){
+        char ch = inputString.charAt(i);
+        int chval=ch;
+        int chval1=0;
+        if(chval>109) chval1 = 109-(chval-110);
+        if(chval<110) chval1= 110+(109-chval);
+        char ch1 =(char)chval1;
+        outputString+=ch1;
+    }
+    return outputString;
+}
