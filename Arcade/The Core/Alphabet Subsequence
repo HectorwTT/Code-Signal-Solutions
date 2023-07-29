@@ -1,0 +1,12 @@
+boolean solution(String s) {
+  s=s.toLowerCase();
+  for(int i =0;i<s.length();i++){
+      char ch= s.charAt(i);
+      for(int j=i+1;j<=s.length();j++){
+          if(j<s.length()) {
+              if(s.charAt(j)<=ch) return false;
+          }
+      }
+  }
+  return true;
+}
