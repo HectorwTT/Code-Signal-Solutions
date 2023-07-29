@@ -1,0 +1,8 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select id,email_title,case when size<power(2,20) 
+	                           then concat(floor(size/power(2,10)),' Kb')
+	                            else concat(floor(size/power(2,20)),' Mb')
+								end as short_size
+	from emails order by size desc;
+END
