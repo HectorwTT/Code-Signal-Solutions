@@ -1,0 +1,6 @@
+String solution(int number, int width) {
+ String numberString =""+number;
+ if(numberString.length()>width) return numberString.substring(numberString.length()-width);
+ else if(numberString.length()==width)return numberString;
+ else return "0".repeat(width-numberString.length())+numberString;
+}
