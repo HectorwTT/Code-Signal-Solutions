@@ -1,0 +1,9 @@
+int solution(int[] inputArray) {
+  int total=0;
+  for(int i=0;i<inputArray.length;i++){
+      int houseNumber= inputArray[i];
+      if(houseNumber==0) break;
+      total+= houseNumber;
+  }
+  return total;
+}
