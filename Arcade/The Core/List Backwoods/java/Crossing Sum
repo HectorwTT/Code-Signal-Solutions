@@ -1,0 +1,8 @@
+int solution(int[][] matrix, int a, int b) {
+   int rowtotal=0;
+   int columntotal=0;
+   for(int column=0;column<matrix[a].length;column++)rowtotal+=matrix[a][column];
+   for(int row=0;row<matrix.length;row++)
+     if(row!=a) columntotal += matrix[row][b];
+   return rowtotal+columntotal;
+}
