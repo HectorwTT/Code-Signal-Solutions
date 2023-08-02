@@ -1,0 +1,18 @@
+CREATE PROCEDURE solution()
+BEGIN
+	select bug.title as bug_title,component.title as component_title,
+	        count(t.component_id)
+		    as   bugs_in_component 
+		   from bug inner join bugcomponent 
+		   on bug.num= bugcomponent.bug_num
+		   inner join component
+		   on component.id= bugcomponent.component_id,
+		    (select component_id from bugcomponent)t,
+			(select bug_num
+			  ,count(bug_num) as num_of_bugs from bugcomponent group by bug_num)u
+		   where bugcomponent.component_id=t.component_id
+		   and bugcomponent.bug_num= u.bug_num
+		   and u.num_of_bugs>1
+		   group by bug.title,component_title
+		   order by 3 desc,component.id,bugcomponent.bug_num;
+END
