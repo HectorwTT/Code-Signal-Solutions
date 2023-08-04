@@ -1,0 +1,52 @@
+int[] solution(int s, int[] arr) {
+ int [] indices = new int [2];
+ if(arr.length==1){
+  if(arr[0]==s){
+      indices[0]=1;
+      indices[1]=1;
+      return indices;
+  }
+ }
+ int maxlength=0;
+ int [] sums= new int[arr.length];
+ sums[0]=arr[0];
+ for(int i=1;i<sums.length;i++){
+   sums[i]= arr[i]+sums[i-1];
+   for(int j=0;j<i;j++){
+     if(sums[i]==s) {
+         if(i>maxlength){
+             indices[0]=0;
+             indices[1]=i;
+             maxlength=i;
+         }
+         break;
+     }
+     else if(arr[i]==s){
+         indices[0]=1;
+         indices[1]=1;
+     }
+     else{
+         int currenttotal= sums[i]-sums[j];
+         if(currenttotal==s){
+             if(i-j>maxlength){
+             indices[0]=j+1;
+             indices[1]=i;
+             maxlength=i-j-1;
+           }
+           break;
+         }
+     }
+   }
+  }
+  if (maxlength==0){
+      if(indices[1]!=1){
+         int [] index = new int[1];
+         index[0]=-1;
+         return index;
+      }
+    
+  }
+  indices[0]++;
+  indices[1]++;
+  return indices;
+}
