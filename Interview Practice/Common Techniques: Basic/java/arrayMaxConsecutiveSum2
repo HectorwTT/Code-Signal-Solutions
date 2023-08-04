@@ -10,7 +10,7 @@ int solution(int[] inputArray) {
      int currenttotal= sums[i]-sums[j];
      if(currenttotal>maxsums[i])maxsums[i]=currenttotal;
    }
+    if(maxsums[i]<maxsums[i-1])maxsums[i]=maxsums[i-1];
   }
-  Arrays.sort(maxsums);
   return maxsums[maxsums.length-1];
 }
