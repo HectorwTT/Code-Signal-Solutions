@@ -1,0 +1,16 @@
+int solution(int[] inputArray) {
+  int [] sums= new int[inputArray.length];
+  int [] maxsums= new int[inputArray.length];
+  sums[0]=inputArray[0];
+  maxsums[0]= sums[0];
+  for(int i=1;i<sums.length;i++){
+   sums[i]= inputArray[i]+sums[i-1];
+   maxsums[i]=sums[i];
+   for(int j=0;j<i;j++){
+     int currenttotal= sums[i]-sums[j];
+     if(currenttotal>maxsums[i])maxsums[i]=currenttotal;
+   }
+  }
+  Arrays.sort(maxsums);
+  return maxsums[maxsums.length-1];
+}
