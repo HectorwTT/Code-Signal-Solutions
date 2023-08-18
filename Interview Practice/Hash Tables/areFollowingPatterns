@@ -1,0 +1,21 @@
+boolean solution(String[] strings, String[] patterns) {
+  Hashtable<String,String> stringhashes = new Hashtable<>();
+  Hashtable<String,String> patternhashes = new Hashtable<>();
+  for(int i=0;i<strings.length;i++){
+      String string= strings[i];
+      String pattern = patterns[i];
+      if(!stringhashes.containsKey(string)){
+          stringhashes.put(string,pattern);
+      } else{
+          String matchingpattern= stringhashes.get(string);
+          if(!matchingpattern.equals(pattern)) return false;
+      }
+      if(!patternhashes.containsKey(pattern)){
+          patternhashes.put(pattern,string);
+      } else{
+          String matchingstring= patternhashes.get(pattern);
+          if(!matchingstring.equals(string)) return false;
+      }
+  }
+  return true;
+}
