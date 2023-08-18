@@ -1,0 +1,45 @@
+String[][] solution(String[][] dishes) {
+  Hashtable<String,List<String>> ingredients = new Hashtable<>();
+  for(int i=0;i<dishes.length;i++ ){
+      for(int j=1;j<dishes[i].length;j++){
+          String ingredient= dishes[i][j];
+          String meal= dishes[i][0];
+          if(!ingredients.containsKey(ingredient)){
+            List<String> meals  = new ArrayList<>();
+            meals.add(meal);
+            ingredients.put(ingredient,meals);  
+          }
+          else{
+              List<String> meals = ingredients.get(ingredient);
+              meals.add(meal);
+              ingredients.replace(ingredient,meals);
+          } 
+      }
+  }
+  List<String> listOfIngredients= new ArrayList<>();
+  Enumeration<String> keys = ingredients.keys();
+  while(keys.hasMoreElements()){
+      String key=keys.nextElement();
+      List<String> values= ingredients.get(key);
+      if(values.size()>=2)listOfIngredients.add(key);
+  }
+  String [] arrOfIngredients = listOfIngredients
+                                 .toArray(new String[listOfIngredients.size()]);
+  Arrays.sort(arrOfIngredients);
+  List<List<String>> listOfIngredientsWithMeals= new ArrayList<>();
+  for(int i=0;i<arrOfIngredients.length;i++){
+      String ingredient= arrOfIngredients[i];
+      List<String> listOfMeals= ingredients.get(ingredient);
+      String[]arrOfMeals= listOfMeals.toArray(new String[listOfMeals.size()]);
+      Arrays.sort(arrOfMeals);
+      List<String>ingredientWithMeals= new ArrayList<>();
+      ingredientWithMeals.add(ingredient);
+      List<String>listOfMeals1= Arrays.asList(arrOfMeals);
+      ingredientWithMeals.addAll(listOfMeals1);
+      listOfIngredientsWithMeals.add(ingredientWithMeals);
+  }
+  String [][]finalListOfIngredients= listOfIngredientsWithMeals.stream()
+                .map(l -> l.stream().toArray(String[]::new))
+                .toArray(String[][]::new);;
+  return finalListOfIngredients;
+}
