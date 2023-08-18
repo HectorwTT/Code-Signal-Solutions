@@ -1,0 +1,13 @@
+boolean solution(int[] nums, int k) {
+  HashMap<Integer,Integer> indexes = new HashMap<>();
+  for(int i=0;i<nums.length;i++){
+      int key= nums[i];
+      if(!indexes.containsKey(key)){
+          indexes.put(key,i);
+      } else{
+          if(Math.abs(indexes.get(key)-i)<=k) return true;
+          else indexes.replace(key,i);
+      }
+  }
+  return false;
+}
