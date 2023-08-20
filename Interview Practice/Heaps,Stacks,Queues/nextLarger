@@ -1,0 +1,16 @@
+int[] solution(int[] a) {
+   int [] b = new int[a.length];
+   for(int i =0;i<a.length-1;i++){
+       int[]tmp=Arrays.copyOfRange(a,i+1,a.length);
+       int tmpindex=0;
+       int next=tmp[tmpindex];   
+       while(next<=a[i] && tmpindex< tmp.length){
+           next=tmp[tmpindex++];
+       } 
+       if (tmpindex>tmp.length)b[i]=-1;
+       else b[i]=next;
+       
+   }
+   b[b.length-1]=-1;
+   return b;
+}
