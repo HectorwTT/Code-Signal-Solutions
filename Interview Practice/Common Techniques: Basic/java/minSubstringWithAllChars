@@ -1,0 +1,47 @@
+String solution(String s, String t) {
+  String minsubString=s;
+  int minlength=s.length();
+  HashMap<Character,Integer> tchars = new HashMap<>();
+  if(s.equals("") ||t.equals(""))return "";
+  if(t.length()==1) return t;
+  if(s.equals(t))return t;
+  for(int i=0;i<t.length();i++){
+    char ch= t.charAt(i);
+    if(!tchars.containsKey(ch))tchars.put(ch,1);
+    else tchars.put(ch,tchars.get(ch)+1);
+  }
+  String substring="";
+  for(int i=0;i<s.length();i++){
+    char ch= s.charAt(i);
+    substring+=ch;
+    if(substring.length()>=t.length()){
+      int numOfCharsFound=0;
+      for(Character key:tchars.keySet()){
+        if(substring.indexOf(""+key)==-1)break;
+        else numOfCharsFound++;
+      }
+      if(numOfCharsFound==tchars.size()){
+        String x="";
+        for(int j=1;j<substring.length();j++){
+          String substring1= substring.substring(j);
+          int numOfCharsFound1=0;
+          if(substring1.length()<t.length())break;
+          else{
+            for(Character key:tchars.keySet()){
+              if(substring1.indexOf(""+key)==-1)break;
+              else numOfCharsFound1++;
+            }
+          }
+          if(numOfCharsFound1==tchars.size())x=substring1;
+        }
+        if(!x.equals(""))substring=x;
+        if(substring.length()<minlength){
+          minlength=substring.length();
+          minsubString=substring;
+        }
+        substring="";
+      }
+    }
+  }
+  return minsubString;
+}
