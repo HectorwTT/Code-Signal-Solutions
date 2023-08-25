@@ -1,0 +1,17 @@
+ListNode<Integer> solution(ListNode<Integer> l, int k) {
+   ListNode<Integer> current =l;
+   ListNode<Integer>prev = null;
+   ListNode<Integer> root=null;
+   while(current!=null){
+      int value= current.value;
+      if(value==k){
+         if(prev!=null)prev.next=current.next;
+      }
+      else{
+         if(prev==null) root=current;
+         prev=current;
+      }
+      current=current.next;
+   }
+   return root;
+}
