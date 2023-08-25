@@ -1,0 +1,18 @@
+boolean solution(ListNode<Integer> l) {
+  ListNode<Integer> current=l;
+  ListNode<Integer> current1=l;
+  Stack<Integer> stack= new Stack<>();
+  while(current!=null){
+    int currentval= current.value;
+    stack.push(currentval);
+    current=current.next;
+  }
+  while(!stack.isEmpty() && current1!=null){
+    int lastval= stack.pop();
+    int currentval= current1.value;
+    if(currentval!=lastval)return false;
+    current1=current1.next;
+  }
+  if((stack.isEmpty()&& current1!=null)||(!stack.isEmpty() && current1==null))return false;
+   return true;
+}
