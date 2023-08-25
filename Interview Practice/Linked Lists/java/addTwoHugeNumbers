@@ -1,0 +1,60 @@
+ListNode<Integer> solution(ListNode<Integer> a, ListNode<Integer> b) {
+ Stack<Integer> astack= new Stack<>();
+ Stack<Integer> bstack= new Stack<>();
+ Stack<Integer>reststack=new Stack<>();
+ int carryover=0;
+ ListNode<Integer>result= null;
+ ListNode<Integer>acurrent= a;
+ ListNode<Integer> bcurrent=b;
+ while(acurrent!=null){
+   int acurrentval= acurrent.value;
+   astack.push(acurrentval);
+   acurrent=acurrent.next;
+ }
+ while(bcurrent!=null){
+   int bcurrentval= bcurrent.value;
+   bstack.push(bcurrentval);
+   bcurrent=bcurrent.next;
+ }
+ while(!astack.isEmpty() &&!bstack.isEmpty()){
+   int avalue= astack.pop();
+   int bvalue= bstack.pop();
+   int total=avalue+bvalue+carryover;
+   int resultval=0;
+   if(total>=10000){
+     resultval=total-10000;
+     carryover=1;
+   }
+   else {
+     resultval=total;
+     carryover=0;
+   }
+   ListNode<Integer>resultnext=result;
+   result = new ListNode(resultval);
+   result.next=resultnext;
+ }
+ if(astack.isEmpty())reststack=bstack;
+ else reststack=astack;
+ while(!reststack.isEmpty()){
+   int restval= reststack.pop();
+   int total=restval+carryover;
+   if(total>=10000){
+     total-=10000;
+     carryover=1;
+   }else{
+     carryover=0;
+   }
+   ListNode<Integer>resultnext=result;
+   result= new ListNode(total);
+   result.next= resultnext;
+ }
+ if(result.value==0 ||carryover==1){
+   if(carryover==1){
+    ListNode<Integer>resultnext= result;
+    result= new ListNode(1);
+    result.next=resultnext;
+   }
+   
+ }
+ return result;
+}
