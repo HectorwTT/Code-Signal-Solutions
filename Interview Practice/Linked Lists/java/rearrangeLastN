@@ -1,0 +1,18 @@
+ListNode<Integer> solution(ListNode<Integer> l, int n) {
+   if(n==0)return l;
+   ListNode<Integer> current=l;
+   Map<Integer,ListNode> nodes= new HashMap<>();
+   int location =1;
+   while(current!=null){
+       nodes.put(location,current);
+       location++;
+       current=current.next;
+   }
+   if(n>=location-1)return l;
+   ListNode<Integer> newtail= nodes.get(location-1-n);
+   newtail.next=null;
+   ListNode<Integer> newroot= nodes.get(location-n);
+   ListNode<Integer>tail= nodes.get(location-1);
+   tail.next= l;
+   return newroot;
+}
