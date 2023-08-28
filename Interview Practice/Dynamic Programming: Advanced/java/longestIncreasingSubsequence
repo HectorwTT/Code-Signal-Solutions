@@ -1,0 +1,11 @@
+int solution(int[] sequence) {
+  int [] lengths= new int[sequence.length];
+  for(int i=0;i<lengths.length;i++)lengths[i]=1;
+  for(int i=1;i<sequence.length;i++){
+    for(int j=0;j<i;j++){
+      if(sequence[j]<sequence[i] && lengths[i]<=lengths[j]) lengths[i]=lengths[j]+1;
+    }
+  }
+  Arrays.sort(lengths);
+ return lengths[lengths.length-1];
+}
