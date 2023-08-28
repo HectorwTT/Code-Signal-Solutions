@@ -1,0 +1,47 @@
+int[] solution(int numerator, int denominator) {
+ int [] ratio = new int[2];
+ if(numerator ==0 ) {
+   ratio[1]=1;
+   return ratio;
+     
+ }
+ int ratio1 = numerator/denominator;
+ int inverse = denominator/numerator;
+ int ratiomod = numerator%denominator;
+ int inversemod= denominator%numerator;
+ if(ratiomod ==0)  {
+     ratio[0]= ratio1;
+     ratio[1]= 1;
+ }else if(inversemod==0){
+     ratio[0]=1;
+     ratio[1]=inverse;
+ }else{
+     int divisor =1;
+     int nummod= Math.abs(numerator)%divisor;
+     int denommod = Math.abs(denominator)%divisor;
+     int absNumerator=Math.abs(numerator);
+     int absDenominator=Math.abs(denominator);
+     int newnumerator=numerator;
+     int newdenominator=denominator;
+     while(divisor <=Math.min(absNumerator,absDenominator)){
+         divisor++;
+         nummod=absNumerator%divisor;
+         denommod= absDenominator%divisor;
+         if(nummod==0 && denommod==0) {
+             newnumerator= absNumerator/divisor;
+             newdenominator= absDenominator/divisor;
+         }
+     }
+     if (numerator <0){
+         if(denominator>0 && newnumerator>0)newnumerator =-1*newnumerator;
+     } 
+     if (denominator <0){
+         if(numerator>0)newnumerator= -1*newnumerator;
+         if(newdenominator<0)newdenominator=-1*newdenominator;
+     }
+     ratio[0]=newnumerator;
+     ratio[1]= newdenominator;
+    
+ }
+  return ratio;
+}
