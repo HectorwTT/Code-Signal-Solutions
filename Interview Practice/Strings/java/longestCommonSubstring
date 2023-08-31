@@ -1,0 +1,32 @@
+int solution(String s, String t){ 
+  String shorterString ="";
+  String longerString="";
+  int maxlength=0;
+  String substring="";
+  if(s.length()<=t.length()){
+      shorterString=s;
+      longerString=t;
+  }
+  else{
+      shorterString=t;
+      longerString=s;
+  } 
+  for(int i=0;i<shorterString.length();i++){
+    char ch= shorterString.charAt(i);
+    if(!substring.equals("")){
+      substring+=ch;
+      if(longerString.contains(substring)){
+        if(substring.length()>maxlength){
+          maxlength=substring.length();
+        }
+      }else  substring=substring.substring(1);
+    }else{
+      if(longerString.contains(""+ch)){
+        substring=""+ch;
+        if(maxlength==0)maxlength=1;
+      }
+    }
+  }
+  return maxlength;
+}
+
