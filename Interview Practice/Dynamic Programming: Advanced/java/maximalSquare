@@ -1,0 +1,73 @@
+int solution(char[][] matrix) {
+ char [][] nullmatrix= new char[0][0];
+ if(Arrays.equals(matrix,nullmatrix))return 0;
+ int[][] horizontalborder=new int [matrix.length][matrix[0].length];
+ int[][] verticalborder=new int [matrix.length][matrix[0].length];
+ int [][] square= new int[matrix.length][matrix[0].length];
+ int maxarea=0;
+ for(int i=0;i<matrix.length;i++){
+     for(int j=0;j<matrix[0].length;j++){
+         if(matrix[i][j]=='1'){
+             if(i==0 && j==0){
+               horizontalborder[i][j]=1;
+               verticalborder[i][j]=1;
+             }
+             if(i!=0){
+              if(matrix[i-1][j]=='0')verticalborder[i][j]= 1;
+              else verticalborder[i][j]=verticalborder[i-1][j]+1;
+              if(j==0) horizontalborder[i][j]=1;
+             }
+             if(j!=0){
+              if (matrix[i][j-1]=='0')
+                horizontalborder[i][j]= 1;
+              else horizontalborder[i][j]=horizontalborder[i][j-1]+1;
+              if(i==0)verticalborder[i][j]=1;
+             }      
+         }
+     }     
+ }
+ for(int i=0;i<square.length;i++){
+  for(int j=0;j<square[0].length;j++){
+    if(i==0)if(horizontalborder[i][j]>=1)square[i][j]=1;
+    if(j==0)if(verticalborder[i][j]>=1)square[i][j]=1;
+    if(i>0 &&j>0){
+      int length=horizontalborder[i][j]-horizontalborder[i][j-1];
+      int height= verticalborder[i][j]-verticalborder[i-1][j];
+      if(horizontalborder[i][j]>=1 &&verticalborder[i][j]>=1)square[i][j]=1;
+      if(length==1 && height==1
+         && horizontalborder[i][j]>=1
+         && verticalborder[i][j]>=1
+         &&square[i][j-1]>=1
+         &&square[i-1][j]>=1
+         && square[i-1][j-1]>=1){
+        square[i][j]=4;
+        int lastsquare= square[i-1][j-1];
+        if(lastsquare>=4){
+         int squaredimension= (int)Math.pow(lastsquare,0.5);
+         int shift=squaredimension+1;
+         int current=1;
+         int rows= i-1;
+         int columns=j-1;
+         boolean isSquare=true;
+         while(rows>=0 && columns>=0 &&current<shift){
+          if(square[rows][j]==0){
+           isSquare=false;
+           break;
+          }
+          if(square[i][columns]==0){
+           isSquare=false;
+           break;
+          }
+          rows--;
+          columns--;
+          current++;
+        }
+        if(isSquare==true) square[i][j]=shift*shift;
+        }
+      }  
+    }
+   if(square[i][j]>maxarea)maxarea=square[i][j];
+  }
+ }
+ return maxarea;
+}
