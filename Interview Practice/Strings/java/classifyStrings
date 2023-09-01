@@ -1,0 +1,32 @@
+String solution(String s) {
+ int numOfConsecutiveVowels=0;
+ int numOfConsecutiveConsonants=0;
+ boolean isEither=false;
+ String status="";
+ long quotationCount= s.chars().filter(ch->ch=='?').count();
+ if(quotationCount==s.length() && s.length()<=2)return "good"; 
+ for(int i=0;i<s.length();i++){
+  char ch= s.charAt(i);
+  if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'){
+   if(numOfConsecutiveConsonants==3&&isEither==true)return "mixed";
+   numOfConsecutiveConsonants=0;
+   numOfConsecutiveVowels++; 
+   if(numOfConsecutiveVowels==2 &&isEither==true )return "bad";
+  }
+  else if(ch=='?'){    
+   if(numOfConsecutiveConsonants==4 || numOfConsecutiveVowels==2) isEither=true;
+   status="mixed";
+   numOfConsecutiveConsonants=0;
+   numOfConsecutiveVowels=0;
+  }else{
+   if(numOfConsecutiveVowels==1&&isEither==true)return "mixed";
+   numOfConsecutiveVowels=0;
+   numOfConsecutiveConsonants++;
+   if(numOfConsecutiveConsonants==4 && isEither==true ) return "bad";
+   
+  }
+  if(numOfConsecutiveVowels==3 ||numOfConsecutiveConsonants==5) return "bad";
+ }
+ if(status.equals("mixed")) return "mixed";
+ else return "good";                
+}
