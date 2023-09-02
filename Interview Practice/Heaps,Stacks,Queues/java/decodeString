@@ -28,6 +28,7 @@ String solution(String s) {
      String plaintext="";
      if(nestedsubstr.equals("")){
       plaintext= s.substring(index+1,i);
+      substring="";
      }else{
        plaintext=nestedsubstr;
        nestedsubstr="";
