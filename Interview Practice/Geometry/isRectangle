@@ -1,0 +1,48 @@
+boolean solution(int[][] points) {
+   double lengthx0x1= Math.pow(Math.pow((points[0][0]-points[1][0]),2)
+                    + Math.pow((points[0][1]-points[1][1]),2),0.5);
+   double lengthx1x2=Math.pow(Math.pow((points[1][0]-points[2][0]),2)
+                    + Math.pow((points[1][1]-points[2][1]),2),0.5);
+   double lengthx2x3=Math.pow(Math.pow((points[2][0]-points[3][0]),2)
+                    + Math.pow((points[2][1]-points[3][1]),2),0.5);
+   double lengthx3x0=Math.pow(Math.pow((points[3][0]-points[0][0]),2)
+                    + Math.pow((points[3][1]-points[0][1]),2),0.5);
+   int changeinyx0x1= (points[1][1]-points[0][1]);
+   int changeinxx0x1= (points[1][0]-points[0][0]);
+   int changeinyx1x2= (points[2][1]-points[1][1]);
+   int changeinxx1x2= (points[2][0]-points[1][0]);
+   int changeinyx2x3= (points[3][1]-points[2][1]);
+   int changeinxx2x3= (points[3][0]-points[2][0]);
+   int changeinyx3x0= (points[0][1]-points[3][1]);
+   int  changeinxx3x0=(points[0][0]-points[3][0]);
+   if(changeinyx0x1==0 
+      || changeinxx0x1 ==0
+      ||changeinyx1x2==0
+      ||changeinxx1x2==0
+      ||changeinyx2x3==0
+      ||changeinxx2x3==0
+      ||changeinyx3x0==0
+      ||changeinxx3x0==0){
+      if(changeinyx0x1==0 && changeinyx2x3!=0)return false;
+      if(changeinxx0x1==0 && changeinxx2x3!=0)return false;
+      if(changeinyx1x2==0 && changeinyx3x0!=0)return false;
+      if(changeinxx1x2==0 &&changeinxx3x0!=0)return false;
+      if(lengthx0x1==lengthx2x3 && lengthx1x2==lengthx3x0
+      &&((changeinyx0x1==0 && changeinxx1x2==0)
+          ||(changeinxx0x1==0 && changeinyx1x2==0))
+      &&((changeinyx2x3==0 &&changeinxx3x0==0)
+         ||(changeinxx2x3==0 &&changeinyx3x0==0)))return true;
+      else return false;
+   }
+   double gradientx0x1=(double)changeinyx0x1/(double)changeinxx0x1;
+   double gradientx1x2= (double)changeinyx1x2/(double)changeinxx1x2;
+   double gradientx2x3= (double)changeinyx2x3/(double)changeinxx2x3;
+   double gradientx3x0=(double)changeinyx3x0/(double)changeinxx3x0;
+   if(gradientx0x1==gradientx2x3 
+      &&(gradientx0x1*gradientx3x0==-1)
+      && gradientx3x0==gradientx1x2
+      &&(gradientx1x2*gradientx2x3==-1)
+       &&lengthx0x1==lengthx2x3
+       &&lengthx3x0==lengthx1x2)return true;
+   else return false;
+}
