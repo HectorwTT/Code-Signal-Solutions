@@ -1,0 +1,12 @@
+function solution(inputString) {
+  let right = inputString.length-1;
+  let left=0;
+  while(left<right){
+    let leftch= inputString.charAt(left);
+    let rightch= inputString.charAt(right);
+    if(leftch!=rightch)return false;
+    left++;
+    right--;
+  }
+  return true;
+}
