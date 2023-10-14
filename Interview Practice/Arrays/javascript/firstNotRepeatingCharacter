@@ -1,0 +1,8 @@
+function solution(s) {
+ let unique='_';
+ for(let i=0;i<s.length;i++){
+  let ch=s.charAt(i);
+  if(s.indexOf(""+ch)== s.lastIndexOf(""+ch)) return ch;
+ }
+ return unique;
+}
