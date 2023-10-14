@@ -1,0 +1,10 @@
+function solution(s1, s2) {
+  let s3=s2;
+  for(let i=0;i<s1.length;i++){
+    let s1ch= s1.charAt(i);
+    if(s3.indexOf(""+s1ch)!=-1){
+      s3=s3.replace(""+s1ch,"");
+    }
+  }
+  return s2.length-s3.length;
+}
