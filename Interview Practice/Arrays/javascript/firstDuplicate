@@ -1,0 +1,13 @@
+function solution(a) {
+ let minIndex=a.length;
+ let result=-1;
+ const duplicates= new Map();
+ for(let i=0;i<a.length;i++){
+  let number = a[i];
+  if(duplicates.has(number)){
+    if(i<minIndex)minIndex=i;
+  }else duplicates.set(number,1);
+ }
+ if(minIndex==a.length)return -1;
+ else return a[minIndex];
+}
