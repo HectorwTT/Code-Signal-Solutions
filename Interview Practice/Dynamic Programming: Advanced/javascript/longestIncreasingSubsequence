@@ -1,0 +1,12 @@
+function solution(sequence) {
+  const  lengths= new Array (sequence.length);
+  for(let i=0;i<lengths.length;i++)lengths[i]=1;
+  for(let i=0;i<sequence.length;i++){
+   for(let j=i-1;j>=0;j--){
+    if(sequence[j]<sequence[i] && lengths[i]<=lengths[j]) lengths[i]=lengths[j]+1;
+    }
+  }
+  lengths.sort(function(a, b){return a - b});
+  for(let i=0;i<lengths.length;i++)console.log(lengths[i]);
+  return lengths[lengths.length-1];
+}
