@@ -1,0 +1,41 @@
+int[] solution(int[][] graph, int sourceVertex) {
+ Queue <Integer> vertices= new LinkedList<Integer>();
+ int [][]allDistances= new int[graph.length][graph[0].length];
+ boolean [][] visited = new boolean[graph.length][graph[0].length];
+ int[] result = new int[graph.length];
+ for(int i=0;i<allDistances.length;i++){
+  for(int j=0;j<allDistances[i].length;j++){
+   if(i==sourceVertex && j==sourceVertex) visited[i][j]= true;
+   else{
+    allDistances[i][j]=(int)Double.POSITIVE_INFINITY;
+    visited[i][j]=false; 
+   } 
+  }
+ }
+ for(int j=0;j<allDistances[sourceVertex].length;j++){
+  if(graph[sourceVertex][j]!=-1){
+   allDistances[sourceVertex][j]=graph[sourceVertex][j];
+    vertices.offer(j);
+    visited[sourceVertex][j]=true;  
+  }
+ }
+ while(!vertices.isEmpty()){
+  Integer vertex= vertices.poll();
+  for(int j= 0;j<allDistances[vertex].length;j++){
+   if(graph[vertex][j]!=-1){
+     if(visited[vertex][j]==false ){
+      vertices.offer(j);
+      visited[vertex][j]=true;
+     }
+     if(allDistances[sourceVertex][j]
+         >allDistances[sourceVertex][vertex]+graph[vertex][j]){
+      allDistances[sourceVertex][j]=allDistances[sourceVertex][vertex]+graph[vertex][j];
+     }
+   }
+  }
+ }
+ for(int j=0;j<allDistances[sourceVertex].length;j++){
+   if(j!=sourceVertex)result[j]=allDistances[sourceVertex][j];
+ }
+ return result;
+}
