@@ -1,0 +1,39 @@
+boolean[] solution(int n, int[][] queens, int[][] queries) {
+ boolean [] result = new boolean[queries.length];
+ List<Integer>[][] queenRowsAndColumns= new List[1][2];
+ queenRowsAndColumns[0][0]=new ArrayList<>();
+ queenRowsAndColumns[0][1]=new ArrayList<>();
+ for(int i=0;i<queens.length;i++){
+   int row= queens[i][0];
+   int column = queens[i][1];
+   queenRowsAndColumns[0][0].add(row);
+   queenRowsAndColumns[0][1].add(column);
+ }
+ for(int i=0;i<queries.length;i++){
+   int row= queries[i][0];
+   int column=queries[i][1];
+   if(queens.length==0){
+      result[i]=false;  
+   }
+   else{
+      if(queenRowsAndColumns[0][0].contains(row) ||
+        queenRowsAndColumns[0][1].contains(column)) result[i]= true;
+      else {
+         List<Integer> rowList= queenRowsAndColumns[0][0];
+         List<Integer> columnList= queenRowsAndColumns[0][1];
+         for(int j=0;j<queenRowsAndColumns[0][0].size();j++){
+            int queenrow= rowList.get(j);
+            int queencolumn=columnList.get(j);
+            double gradient=(double)(queencolumn-column)/(double)(queenrow-row);
+            if(gradient==1.0 ||gradient==-1.0){
+               result[i]=true;
+               break;
+            } 
+         }
+      }
+   }
+ }
+ 
+ return result;
+}
+
