@@ -1,0 +1,43 @@
+boolean solution(int[][] connections) {
+ HashMap<Integer,Integer> currentBranches= new HashMap<>();
+ for(int i=0;i<connections.length;i++){
+   currentBranches.put(i,0);
+ }
+ for(int i=0;i<connections.length;i++){
+  int currentProcess=i;
+  int currentBranch=0;
+  Stack<Integer> processes= new Stack<>();
+  if(connections[i].length!=0){
+    processes.push(currentProcess);
+    while(!processes.isEmpty()){
+      if(connections[currentProcess].length==0){
+        processes.pop();
+        currentProcess= processes.peek();
+        currentBranches.replace(currentProcess,currentBranches.get(currentProcess)+1);
+        currentBranch=currentBranches.get(currentProcess);
+      }else{
+          if(currentBranch<connections[currentProcess].length){
+          int nextProcess=connections[currentProcess][currentBranch];
+          if(processes.contains(nextProcess))return true;
+          else{
+            processes.push(nextProcess);
+            if(currentBranch!=0)currentBranch=0;
+            currentProcess=nextProcess;
+          }
+          } else{
+             processes.pop();
+            if(processes.isEmpty())break;
+            currentProcess=processes.peek();
+            currentBranches.replace(currentProcess,currentBranches.get(currentProcess)+1);
+            currentBranch=currentBranches.get(currentProcess);
+          }
+        }
+      }
+    }
+  }
+  
+  
+ 
+
+ return false;
+}
