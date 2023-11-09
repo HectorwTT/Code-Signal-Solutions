@@ -1,0 +1,92 @@
+String solution(String[][] times, String source, String dest) {
+ if(times.length==1){
+   if(!times[0][1].equals(dest)) return "-1";
+   else return times[0][3];
+ } 
+ HashMap <String,List<Integer>> destinations= new HashMap<>();
+ HashMap<String,List<Integer>> origins= new HashMap<>();
+ int [][] connections= new int [times.length][times.length];
+ for(int i=0;i<times.length;i++){
+    String from = times[i][0];
+    String to= times[i][1];
+    if(origins.containsKey(from)){
+      List<Integer> nodes= origins.get(from);
+      nodes.add(i);
+      origins.replace(from,nodes);  
+    }else{
+      List<Integer> nodes= new ArrayList<>();
+      nodes.add(i);
+      origins.put(from,nodes); 
+    }
+    if(destinations.containsKey(to) && !to.equals(source)){
+      List<Integer> nodes= destinations.get(to);
+      nodes.add(i);
+      origins.replace(to,nodes);  
+    }else{
+      List<Integer> nodes= new ArrayList<>();
+      nodes.add(i);
+      destinations.put(to,nodes); 
+    }
+    if(destinations.containsKey(from)){
+         List<Integer> fromNodes= destinations.get(from);
+         for(int j=0;j<fromNodes.size();j++){
+            int fromNode= fromNodes.get(j);
+            String arrivalTime= times[fromNode][3];
+            String departureTime= times[i][2];
+            int  arrivalHours=  Integer
+                                 .parseInt(arrivalTime.substring(0,arrivalTime.indexOf(":")));
+            int departureHours= Integer
+                                 .parseInt(departureTime
+                                  .substring(0,departureTime.indexOf(":")));
+            int arrivalMinutes= Integer.
+                                 parseInt(arrivalTime.substring(arrivalTime.indexOf(":")+1));
+            int departureMinutes= Integer.
+                                 parseInt(departureTime
+                                  .substring(departureTime.indexOf(":")+1));
+            int departureTotal= (departureHours*60)+departureMinutes;
+            int arrivalTotal=(arrivalHours*60)+arrivalMinutes;
+            if(departureTotal-arrivalTotal>=60) {
+               connections[fromNode][i]=1;
+            }
+         }
+      }
+ }
+ if(!destinations.containsKey(dest))return "-1";
+ if(!origins.containsKey(source)) return "-1";
+ List<Integer> sourceNodes= origins.get(source);
+ List<String> finalTimes= new ArrayList<>();
+ for(int i=0;i<sourceNodes.size();i++){
+    int sourceNode= sourceNodes.get(i);
+    Queue <Integer> nodes= new LinkedList<>();
+    nodes.offer(sourceNode);
+    while(!nodes.isEmpty()){
+       int node= nodes.poll();
+       List<Integer> toNodes= destinations.get(dest);
+       for(int j=0;j<connections[node].length;j++){
+          if(connections[node][j]==1){
+            if(toNodes.contains(j)){
+             finalTimes.add(times[j][3]);
+            }
+            nodes.offer(j); 
+          } 
+       }
+    }
+ }
+ if(finalTimes.size()==0) return "-1";
+ int finalTime_min_total=(int)Double.POSITIVE_INFINITY;
+ String result=finalTimes.get(0);
+ for(int i=0;i<finalTimes.size();i++){
+    String finalTime= finalTimes.get(i);
+ int finalTimeHour=Integer.parseInt (finalTime.substring(0,
+                           finalTime.indexOf(":")));
+ int finalTimeMinutes=Integer.parseInt (finalTime.substring(
+                                                finalTime.indexOf(":")+1));
+ int finalTimetotal=(finalTimeHour*60)+finalTimeMinutes;
+ if(finalTimetotal<=finalTime_min_total){
+    result=finalTime;
+    finalTime_min_total= finalTimetotal;
+    
+ }
+ }
+ return result;
+}
