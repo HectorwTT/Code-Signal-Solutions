@@ -1,0 +1,13 @@
+boolean isMirror(Tree<Integer> t1, Tree<Integer> t2){
+ if (t1 == null || t2 == null) {
+     return t1==null && t2==null;
+ }
+ return t1.value.equals(t2.value)  && isMirror(t1.left, t2.right) && isMirror(t1.right, t2.left);
+}
+boolean solution(Tree<Integer> t) {
+ if (t == null) return true;
+ if(t.left==null && t.right== null) return true;
+ if(t.left==null && t.right!=null) return false;
+ if(t.right==null && t.left!=null) return false;
+ return isMirror(t.left, t.right);
+}
