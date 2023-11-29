@@ -1,0 +1,35 @@
+
+ListNode<Integer> solution(ListNode<Integer> l, int k) {
+  if(k==1 ) return l;
+  ListNode<Integer> current= l;
+  ListNode<Integer> result=null;
+  ListNode<Integer> resultCurrent=null;
+  int count =0;
+  Stack<Integer> nodes= new Stack<>();
+  while(current !=null){
+    while(count<k){
+        nodes.push(current.value);
+        current=current.next;
+        if(current==null)break;
+        count++;
+    }
+    if(current==null)break;
+    if(result==null){
+     result= new ListNode(nodes.pop());
+     resultCurrent= result;
+    }
+    while(!nodes.isEmpty()){
+        ListNode<Integer>newnode= new ListNode(nodes.pop());
+        resultCurrent.next= newnode;
+        resultCurrent = resultCurrent.next;
+    }
+    count=0;
+  }
+  if(count!=k-1)Collections.reverse(nodes);
+  while(!nodes.isEmpty()){
+       ListNode<Integer>newnode= new ListNode(nodes.pop());
+       resultCurrent.next= newnode;
+       resultCurrent = resultCurrent.next;
+  }
+  return result;
+}
