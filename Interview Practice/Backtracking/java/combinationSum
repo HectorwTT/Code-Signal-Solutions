@@ -1,0 +1,59 @@
+String solution(int[] a, int sum) {
+ List<List<Integer>> listOfResults= subsetsWithTargetSum( a,sum)
+                               .stream().distinct().collect(Collectors.toList());
+ listOfResults.sort((x, y) -> {
+            for (int i = 0; i < Math.min(y.size(), x.size()); i++) {
+                if (x.get(i) != y.get(i)) {
+                    return x.get(i) - y.get(i);
+                }
+            }
+            return y.size() - x.size();
+        });
+ 
+ String result="";
+ if(listOfResults.size()==0) return "Empty";
+ for(int i=0;i<listOfResults.size();i++){
+  result+="(";
+  List<Integer> numbers= listOfResults.get(i);
+  for(int j=0;j<numbers.size();j++){
+      result+= numbers.get(j)+" ";
+      
+  }
+  result=result.substring(0,result.length()-1);
+  result+=")";
+ }   
+ return result;                    
+}
+
+public List<List<Integer>> subsetsWithTargetSum(int[] nums, int targetSum) {
+     List<List<Integer>> result = new ArrayList<>();
+     backtrack(nums, targetSum, 0, new ArrayList<Integer>(), result);
+     for(int i=0;i<result.size();i++){
+         List<Integer> numbers= result.get(i);
+         int[] numArray=numbers.stream()
+                            .mapToInt(Integer::intValue)
+                            .toArray();
+         Arrays.sort(numArray);
+         List<Integer> newList= Arrays.stream(numArray)   
+                                    .boxed()          
+                                    .collect(Collectors.toList());
+         result.set(i,newList);
+     }
+     return result;
+    }
+    private void backtrack(int[] nums, int targetSum, int index, 
+                         List<Integer> subset,List<List<Integer>> result) {
+     if (targetSum == 0) {
+      result.add(new ArrayList<>(subset));
+      return;
+     }
+     for (int i = index; i < nums.length; i++){
+      int num = nums[i];
+      if (targetSum - num >= 0) {
+       subset.add(num);
+       backtrack(nums, targetSum - num, i, subset, result);
+       backtrack(nums, targetSum - num, i + 1, subset, result);
+       subset.remove(subset.size() - 1);
+      }
+     }
+    }
