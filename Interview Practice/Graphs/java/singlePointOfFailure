@@ -1,0 +1,40 @@
+int solution(int[][] connections) {
+  boolean [][] visited = new boolean [connections.length][connections[0].length];
+  int total=0;
+  for(int i=0;i<connections.length;i++){
+      for(int j=0;j<connections[i].length;j++){
+          if(connections[i][j]==1 && !visited[i][j]){
+           connections[i][j]=0;
+           connections[j][i]=0;
+           List<Integer> vertices= bfs(connections, j);
+           connections[i][j]=1;
+           connections[j][i]=1;
+           if(!vertices.contains(i))   total++;
+           visited[j][i]= true;
+          }
+      }
+      
+  }
+
+  return total;
+}
+
+List<Integer> bfs(int [][]connections,int start){
+ boolean []visited= new boolean[connections.length];
+ List<Integer> result= new ArrayList<>();
+ result.add(start);
+ Queue<Integer> vertices = new LinkedList<>();
+ vertices.offer(start);
+ while(!vertices.isEmpty()){
+   int vertex= vertices.poll();
+   for(int i=0;i<connections[vertex].length;i++){
+     if(connections[vertex][i]==1 && visited[i]==false){
+      result.add(i);
+      vertices.offer(i); 
+      visited[i]= true;
+     }
+     
+   }
+ }
+ return result;
+}
