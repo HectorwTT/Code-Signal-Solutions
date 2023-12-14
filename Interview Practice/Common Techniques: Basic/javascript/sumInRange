@@ -1,0 +1,25 @@
+let pre = new Array(1000,0);
+ 
+function preCompute(nums)
+{
+    let n = nums.length;
+    pre[0] = nums[0];
+    for (let i = 1; i < n; i++) {
+        pre[i] = nums[i] + pre[i - 1];
+    }
+}
+ 
+function solution(nums, queries)
+{
+    preCompute(nums);
+    let accumulator = 0;
+    let M = 1000000007;    
+    for(let i = 0; i < queries.length; i++){
+        if (queries[i][0] === 0) {
+            accumulator += pre[queries[i][1]];
+        } else {
+            accumulator += pre[queries[i][1]] - pre[queries[i][0] - 1];
+        }
+    }
+    return accumulator < 0 ? ((accumulator % M) + M) % M : accumulator%M;    
+}
