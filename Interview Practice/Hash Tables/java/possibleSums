@@ -1,0 +1,23 @@
+int solution(int[] coins, int[] quantity) {
+  Set<Integer> set= new HashSet<>();
+  generateSums(coins,quantity,0,0,set);
+  return set.size()-1;
+}
+
+void generateSums(int[] coins,int[] quantity,int i,int sum,Set<Integer> set){
+		if(i==coins.length){
+			set.add(sum);
+			return;
+		}
+		if(quantity[i]==0){
+			set.add(sum);
+			generateSums(coins, quantity, i+1, sum,set);
+		}else{
+			set.add(sum);
+			quantity[i]=quantity[i]-1;
+			generateSums(coins, quantity, i, sum+coins[i],set);
+			//backtrack. now increase the quantity since we havent used the ith coin and moving to next coin
+			quantity[i]=quantity[i]+1;
+			generateSums(coins, quantity, i+1, sum, set);
+		}
+	}
