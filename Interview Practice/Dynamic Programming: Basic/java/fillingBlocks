@@ -1,0 +1,21 @@
+int solution(int n) {
+ int [] numOfWays = new int [n+1];
+ 
+ if(n<5){
+     if(n==0) return 0;
+     else if(n==1) return 1;
+     else if(n==2) return 5;
+     else if(n==3) return 11;
+     else return 36;
+ }
+ else{
+    numOfWays[1]=1;
+    numOfWays[2]=5;
+    numOfWays[3]=11;
+    numOfWays[4]=36;
+    for(int i=5;i<numOfWays.length;i++){
+        numOfWays[i]=numOfWays[i-1]+5*numOfWays[i-2]+numOfWays[i-3]-numOfWays[i-4];
+    }
+    return numOfWays[n];
+ }
+ }
