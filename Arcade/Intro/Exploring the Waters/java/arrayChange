@@ -1,0 +1,16 @@
+int solution(int[] inputArray) {
+  int [] inputArray1= inputArray.clone();
+  int prev= inputArray1[0];
+  int total=0;
+  for(int i=1;i<inputArray1.length;i++){
+    int curr=inputArray1[i];
+    if(curr<=prev){
+      inputArray1[i]= prev+1;
+    }
+    prev=inputArray1[i];
+  }
+  for(int i=0;i<inputArray.length;i++){
+    total+=Math.abs(inputArray[i]-inputArray1[i]);
+  }
+  return total;
+}
