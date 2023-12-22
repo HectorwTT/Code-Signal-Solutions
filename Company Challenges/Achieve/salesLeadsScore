@@ -1,0 +1,36 @@
+class Lead{
+ public String name;
+ public double score;
+ public int time;
+ 
+ public Lead(String name,double score,int time){
+     this.name=name;
+     this.score=score;
+     this.time=time;
+ }
+ public double getScore(){return score;}
+  public int getTime(){return time;}
+ public String getName(){return name;}
+
+   
+}
+
+String[] solution(String[] names, int[] time, int[] netValue, boolean[] isOnVacation) {
+ List<String>result= new ArrayList<>();
+ List<Lead> leads= new ArrayList<>();
+ for(int i=0;i<names.length;i++){
+     if(!isOnVacation[i]){
+         double score= (double)time[i]*netValue[i]/365;
+         Lead lead= new Lead(names[i],score,time[i]);
+         leads.add(lead);
+     }
+ }
+ Comparator<Lead> sComparator= Comparator.comparingDouble(Lead::getScore).reversed();
+ Comparator<Lead> tComparator=Comparator.comparingInt(Lead::getTime).reversed();
+ Comparator<Lead> nComparator=Comparator.comparing(Lead::getName);
+ Comparator<Lead> fComparator=sComparator.thenComparing(tComparator).thenComparing(nComparator);
+ List<Lead> newLeads=leads.stream().sorted(fComparator).collect(Collectors.toList());
+ for(int i=0;i<newLeads.size();i++)result.add(newLeads.get(i).getName());
+ return result.toArray(new String[0]);
+
+}
