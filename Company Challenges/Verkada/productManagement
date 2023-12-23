@@ -1,0 +1,130 @@
+class Product {
+  int id;
+  String title;
+
+  Product(int id, String title) {
+    this.id = id;
+    this.title = title;
+  }
+}
+
+class ProductManager {
+  public List<Product> products;
+
+  ProductManager() {
+    products = new ArrayList<>();
+  }
+
+  boolean createProduct(int id, String title) {
+    // TODO: return false if the product id already exists
+    
+    Product product = new Product(id, title);
+    for (int i=0;i<products.size();i++){
+      if(products.get(i).id==id) return false;
+    }
+    products.add(product);
+    return true;
+  }
+
+  boolean updateProduct(int id, String title) {
+    // TODO: return false if the product id does not exist
+    Product product= null;
+    
+    for(int i=0;i<products.size();i++){
+      if(products.get(i).id==id){
+        products.set(i,new Product(id,title));
+        product=new Product(id,title);
+      }
+    }
+    if(product==null)return false;
+    return true;
+  }
+
+  boolean deleteProduct(int id) {
+    // TODO: return false if the product does not exist
+    
+    Product product=null;
+    for (int i = 0; i < products.size(); i++) {
+      if (products.get(i).id == id) {
+        product = products.get(i);
+      }
+    }
+    if(product==null)return false;
+    return true;
+  }
+
+  Product findProductById(int id) {
+    // product or null
+    for (int i = 0; i < products.size(); i++) {
+      Product curProduct = products.get(i);
+      if (curProduct.id == id) {
+        return curProduct;
+      }
+    }
+    return null;
+  }
+
+  Product findProductByTitle(String title) {
+    // product or null
+    for (int i = 0; i < products.size(); i++) {
+      Product curProduct = products.get(i);
+      if (curProduct.title.equals(title)) {
+        return curProduct;
+      }
+    }
+    return null;
+  }
+}
+
+ProductManager productManager = new ProductManager();
+
+List<String> solution(String[][] operations) {
+  // Calls corresponding methods of productManager based on the input
+  List<String> answer = new ArrayList<>();
+  for (int i = 0; i < operations.length; i++) {
+    if (operations[i][0].equals("createProduct")) {
+      int id = Integer.parseInt(operations[i][1]);
+      if (productManager.createProduct(id, operations[i][2])) {
+        answer.add("true");
+      } else {
+        answer.add("false");
+      }
+    }
+    if (operations[i][0].equals("updateProduct")) {
+      int id = Integer.parseInt(operations[i][1]);
+      if (productManager.updateProduct(id, operations[i][2])) {
+        answer.add("true");
+      } else {
+        answer.add("false");
+      }
+    }
+    if (operations[i][0].equals("deleteProduct")) {
+      int id = Integer.parseInt(operations[i][1]);
+      if (productManager.deleteProduct(id)) {
+        answer.add("true");
+      } else {
+        answer.add("false");
+      }
+    }
+    if (operations[i][0].equals("findProductById")) {
+      int id = Integer.parseInt(operations[i][1]);
+      Product result = productManager.findProductById(id);
+      if (result == null) {
+        answer.add("null");
+      } else {
+        answer.add("{\"id\":\"" + Integer.toString(result.id) + "\",\"title\":\"" + result.title + "\"}");
+      }
+    }
+    if (operations[i][0].equals("findProductByTitle")) {
+      String title = operations[i][1];
+      Product result = productManager.findProductByTitle(title);
+      if (result == null) {
+        answer.add("null");
+      } else {
+        answer.add("{\"id\":\"" + Integer.toString(result.id) + "\",\"title\":\"" + result.title + "\"}");
+      }
+    }
+  }
+  return answer;
+}
+ 
