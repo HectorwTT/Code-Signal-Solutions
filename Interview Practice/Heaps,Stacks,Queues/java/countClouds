@@ -1,0 +1,54 @@
+int solution(char[][] skyMap) {
+    int count=0;
+    for(int i=0; i<skyMap.length; i++){
+        for(int j=0; j<skyMap[i].length; j++){
+            if(skyMap[i][j]=='1'){
+                dfs(skyMap,j,i);
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+void dfs(char[][]skyMap, int x, int y){
+    class Vertex{
+        int x,y;
+        Vertex(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+    Stack<Vertex> stack = new Stack<Vertex>();
+    stack.push(new Vertex(x,y));
+    while(!stack.isEmpty()){
+        Vertex temp = stack.peek();
+        x = temp.x;
+        y = temp.y;
+        
+        if(x>0 && skyMap[y][x-1] =='1'){
+            stack.add(new Vertex(x-1,y));
+            skyMap[y][x-1]='0';
+            continue;
+        }
+        if(x<skyMap[0].length-1 && skyMap[y][x+1] == '1'){
+            stack.add(new Vertex(x+1,y));
+            skyMap[y][x+1]='0';
+            continue;
+        }
+        if(y>0 && skyMap[y-1][x] == '1'){
+            stack.add(new Vertex(x,y-1));
+            skyMap[y-1][x]='0';
+            continue;
+        }
+        if(y<skyMap.length-1 && skyMap[y+1][x]=='1'){
+            stack.add(new Vertex(x,y+1));
+            skyMap[y+1][x]='0';
+            continue;
+        }
+        
+        stack.pop();
+    }
+    
+    
+}
