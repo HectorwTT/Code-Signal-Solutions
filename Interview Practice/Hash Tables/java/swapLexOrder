@@ -1,0 +1,66 @@
+String solution(String str, int[][] pairs) 
+{
+    if(pairs.length == 0) return str; 
+    
+    Map<Integer, Set<Integer>> permutations = new HashMap<>();
+    
+    for(int i = 0; i < pairs.length; ++i)
+    {
+        for(int j = 0; j < 2; ++j)
+        {
+            int val = j == 0 ? pairs[i][1] : pairs[i][0];
+            if(!permutations.containsKey(pairs[i][j]))
+            {
+                permutations.put(pairs[i][j], new HashSet<Integer>());
+            }
+            
+            permutations.get(pairs[i][j]).add(val);
+        }        
+    }
+    
+    for(Map.Entry<Integer, Set<Integer>> entry : permutations.entrySet())
+    {
+        Set<Integer> visited = new HashSet<Integer>();
+        visited.add(entry.getKey());
+        
+        BuildPermutations(visited, permutations, entry.getKey(), entry.getKey());
+    }
+        
+    char[] s = str.toCharArray();
+    int length = s.length;
+    for(int i = 0; i < length; i++)
+    {
+        if(permutations.containsKey(Integer.valueOf(i+1)))
+        {
+           for(Integer k : permutations.get(Integer.valueOf(i+1)))
+           {
+               if(k-1 > i && s[k-1] - s[i] > 0)
+               {
+                   char temp = s[k-1];
+                   s[k-1] = s[i];
+                   s[i] = temp;
+               }
+           }
+        }
+    }
+    
+    return String.valueOf(s);
+}
+
+void BuildPermutations(Set<Integer> visited, Map<Integer, Set<Integer>> map, Integer visiting, Integer i)
+{
+    for(Integer index : map.get(visiting))
+    {
+        if(!visited.contains(index))
+        {
+            visited.add(index);
+            BuildPermutations(visited, map, index, i);
+        }
+    }
+    
+    if(visiting.intValue() == i.intValue()) return;
+    if(map.get(visiting).contains(i)) return;
+    if(i <= visiting) return;
+    
+    map.get(visiting).add(i);    
+}
