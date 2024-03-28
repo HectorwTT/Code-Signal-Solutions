@@ -1,44 +1,20 @@
-boolean solution(int[] sequence) {
- List<Integer> listStartingFromZero= new ArrayList<>();
- List<Integer> listStartingFromOne= new ArrayList<>();
- List<Integer> listOfNonMembersStartingFromZero=new ArrayList<>();
- List<Integer> listOfNonMembersStartingFromOne= new ArrayList<>();
- List<Integer> listOfAllStartingFromZero=new ArrayList<>();
- boolean isIncreasing= true;
- listStartingFromZero.add(sequence[0]);
- listStartingFromOne.add(sequence[1]);
- 
- for(int i=1;i<sequence.length;i++){
-  int number=sequence[i];
-  int last= listStartingFromZero.get(listStartingFromZero.size()-1);
-  if(number>last) listStartingFromZero.add(number);
-  else listOfNonMembersStartingFromZero.add(number);
+boolean solution(int[] nums) {
+ int[] fromLeft= new int[nums.length];
+ int[] fromRight= new int[nums.length];
+ fromLeft[0]=1;
+ fromRight[nums.length-1]=1;
+ for(int i=1;i<nums.length;i++){
+  if(nums[i]>nums[i-1])fromLeft[i]=fromLeft[i-1]+1;
+ } 
+ for(int i=nums.length-2;i>=0;i--){
+  if(nums[i]<nums[i+1])fromRight[i]=fromRight[i+1]+1;
  }
- for(int i=2;i<sequence.length;i++){
-   int number=sequence[i];
-   int last = listStartingFromOne.get(listStartingFromOne.size()-1);
-   if(number>last)listStartingFromOne.add(number);
-   else listOfNonMembersStartingFromOne.add(number);
+ for(int i=0;i<nums.length;i++){
+  if(i==0 && fromRight[1]==nums.length-1)return true;
+  if(i==nums.length-1 && fromLeft[i-1]==nums.length-1)return true;
+  if(i>0 && i<nums.length-1 
+        && fromLeft[i-1]+fromRight[i+1]==nums.length-1
+         && nums[i-1]<nums[i+1])return true;
  }
- 
-  listOfAllStartingFromZero.addAll(listStartingFromZero);
-  listOfAllStartingFromZero.remove(listOfAllStartingFromZero.size()-1);
-  listOfAllStartingFromZero.addAll(listOfNonMembersStartingFromZero);
-  int [] numsFromZero= listOfAllStartingFromZero.stream()
-                            .mapToInt(Integer::intValue)
-                            .toArray();
-  for(int i=1;i<numsFromZero.length;i++){
-    int previous=numsFromZero[i-1];
-    int current= numsFromZero[i];
-    if(current<=previous) {
-      isIncreasing=false;
-      break;
-    }
-  }
-  return listStartingFromZero.size()== sequence.length-1
-         ||(numsFromZero.length==sequence.length-1 
-              && isIncreasing)
-         ||(listStartingFromZero.size()==1 && listStartingFromOne.size()==sequence.length-1) ;
- }
- 
-
+ return false;
+}
