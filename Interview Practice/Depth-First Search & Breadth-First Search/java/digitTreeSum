@@ -1,0 +1,37 @@
+long solution(Tree<Integer> t) {
+ long total=0;
+ List<String> paths= binaryTreePaths(t);
+ for(int i=0;i<paths.size();i++){
+  String path= paths.get(i);
+  String value=path.replaceAll("->","");
+  total+=Long.parseLong(value);
+ } 
+ return total;
+}
+void getAllPaths(Tree<Integer> node,List<Integer> path,List<List<Integer>> allPaths){
+ if(node.left==null && node.right==null){
+  path.add(node.value);
+  allPaths.add(new ArrayList<>(path));
+  path.remove(path.size()-1);
+  return;
+ }
+ path.add(node.value);
+ if(node.left!=null) getAllPaths(node.left,path,allPaths);
+ if(node.right!=null) getAllPaths(node.right,path,allPaths);
+ path.remove(path.size()-1);       
+}
+public List<String> binaryTreePaths(Tree<Integer> root) {
+ List<Integer> path = new ArrayList<>();
+ List<List<Integer>> allPaths= new ArrayList<>();
+ List<String> ans= new ArrayList<>();
+ getAllPaths(root,path,allPaths);
+ for(List<Integer> arr:allPaths){
+  StringBuffer str= new StringBuffer();
+  for(int i=0;i<arr.size()-1;i++){
+   str.append(String.valueOf(arr.get(i))+"->");
+  }
+  str.append(String.valueOf(arr.get(arr.size()-1)));
+  ans.add(str.toString());             
+ }
+ return ans;
+}
