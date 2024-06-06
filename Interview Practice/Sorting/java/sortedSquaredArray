@@ -1,0 +1,15 @@
+int[] solution(int[] array) {
+  int []  result=new  int[array.length];
+  PriorityQueue<Integer> heap=new PriorityQueue<>();
+  int index=0;
+  for(int i=0;i<array.length;i++){
+   int squared=array[i]*array[i];
+   heap.offer(squared);
+  }
+
+  while(!heap.isEmpty()){
+   int number=heap.poll();
+   result[index++]= number;
+  }
+  return result;
+}
